@@ -1,0 +1,7 @@
+Projekt, który mam zamiar wykonać będzie umożliwiał użytkownikowi zagranie na czas w klasyczną grę Hanoi
+Cechy:
+-możliwość ustawienia liczby krążków w określonym przedziale (3-10)
+-możliwość zmiany koloru i kształtu krążków
+-lista 10 najlepszych czasów (z podziałem na ilość krążków)
+-funkcja pomoc (program podpowiada jaki miałby być kolejny ruch)
+-funkcja rozwiąż (program sam, z zadanym w kodzie kroku czasowym rozwiązuje problem)
