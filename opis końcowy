@@ -1,0 +1,19 @@
+Link do filmu https://youtu.be/pJUz87YQZws
+
+Projekt został wykonany na Akademię C#.
+Przedstawia on grę HanoiTowers, umożliwiającą zagranie w Wieże Hanoi na czas.
+Wyniki są podzielone w zależności od liczy bloków. Przechowywane są w Folderze Resources w pliku xml. Do parsowania pliku użyto LINQ to XML.
+
+Gra umożliwia zmianę koloru, kształtu i liczby krążków.
+Do wyboru są 4 kształty: romb, elipsa, zaokrąglony prostokąt i zwykły prostokąt.
+Do wyboru kolorów została użyta wtyczka Extended WPF Toolkit.
+Liczba krążków jest edytowalna w zakresie 3-7.
+
+Zadanie zostało wykonane jako aplikacja WPF z użyciem wzorca projektowego MVVM.
+Widoczne są w nim główny widok, jeden viewmodel, oraz kilka modeli. Użyto też klas dziedziczących po ICommand. Służą one do wywoływania zdarzeń z przycisków itp. 
+W projekcie kilkukrotie posługiwano się wyrazeniami Linq.
+Korzystano ponadto z dziedziczenia po INotifyPropertyChanged, oraz IComparable.
+Jednokrotnie zostało wykonane wywołanie rekurencyjne.
+Wykorzystano również enum.
+
+Zapraszam do zapoznania się z kodem.
