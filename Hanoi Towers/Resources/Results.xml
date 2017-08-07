@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<leadboard>
+  <results blockQuantity="3">
+    <result Name="L">00:00:04.6079814</result>
+    <result Name="Nom">00:00:05.0982049</result>
+    <result Name="Al">00:00:05.2725268</result>
+    <result Name="s">00:00:05.2796635</result>
+    <result Name="fds">00:00:05.2902225</result>
+    <result Name="W">00:00:05.3521627</result>
+    <result Name="W">00:00:05.3521627</result>
+    <result Name="Karol">00:00:05.7288046</result>
+  </results>
+  <results blockQuantity="4">
+    <result Name="Alko">00:00:12.8956422</result>
+    <result Name="Mateusz">00:00:19.0473266</result>
+    <result Name="Auua">13:00:27.1273796</result>
+    <result Name="Mat">14:00:25.5271960</result>
+    <result Name="Jako">15:00:14.0161296</result>
+    <result Name="It">15:00:16.8176709</result>
+    <result Name="sdfs">9999</result>
+    <result Name="sdfssdaa">9999</result>
+  </results>
+  <results blockQuantity="5">
+    <result Name="Teusz">00:00:41.4476894</result>
+    <result Name=""></result>
+    <result Name=""></result>
+    <result Name=""></result>
+    <result Name=""></result>
+    <result Name=""></result>
+    <result Name=""></result>
+    <result Name=""></result>
+  </results>
+  <results blockQuantity="6">
+    <result Name=""></result>
+    <result Name=""></result>
+    <result Name=""></result>
+    <result Name=""></result>
+    <result Name=""></result>
+    <result Name=""></result>
+    <result Name=""></result>
+    <result Name=""></result>
+  </results>
+  <results blockQuantity="7">
+    <result Name="sdfssa">-5.05:59:31.8234823</result>
+    <result Name="d">5.06:00:25.4015774</result>
+    <result Name="df">5.08:00:29.1347958</result>
+    <result Name="sdfssagasdaf">5.09:00:25.2802126</result>
+    <result Name=""></result>
+    <result Name=""></result>
+    <result Name=""></result>
+    <result Name=""></result>
+  </results>
+</leadboard>

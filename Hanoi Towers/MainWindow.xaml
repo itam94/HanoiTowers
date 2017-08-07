@@ -1,0 +1,209 @@
+﻿<Window x:Class="Hanoi_Towers.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hanoi_Towers"
+        xmlns:local2="clr-namespace:Hanoi_Towers.VievModels"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="MainWindow"  Width="1000" Height="610">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="timePeriodsFromEnum"
+                            MethodName="GetValues" 
+                            ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local2:GeometryTypes"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <!-- This style is used for buttons, to remove the WPF default 'animated' mouse over effect -->
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border"  BorderThickness="0" 
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Polygon" x:Key="Picket">
+            <Setter Property="Points" Value="20,600 0,600 0,70 20,70"/>
+            <Setter Property="Grid.RowSpan" Value="10"/>
+            <Setter Property="StrokeThickness" Value="2"/>
+            <Setter Property="Stroke" Value="Purple"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Fill" Value="Blue"/>
+        </Style>
+        <Style x:Key="Rectangle" TargetType="Rectangle">
+            <Setter Property="Height" Value="Auto"/>
+            <Setter Property="RadiusX" Value="13.5"/>
+            <Setter Property="RadiusY" Value="13.5"/>
+            <Setter Property="StrokeThickness" Value="3"/>
+
+        </Style>
+        <Style x:Key="StartButton" TargetType="Button">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsStartButtonVisible}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="SaveButton" TargetType="Button">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsSaveButtonVisible}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ResultLabel" TargetType="Label">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsResultVisible}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ResultText" TargetType="TextBox">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsSaveButtonVisible}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ResultUserLabel" TargetType="Label">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsSaveButtonVisible}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="GrayStart" TargetType="Rectangle">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsStartButtonVisible}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
+    <StackPanel Margin="0,0,0,-22">
+        <Menu IsMainMenu="True" Height="Auto">
+            <MenuItem Header="Options">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Color"/>
+                    <xctk:ColorPicker Name="ClrPcker_Background" SelectedColor="{Binding SelectedColour}"></xctk:ColorPicker>
+                </StackPanel>
+
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Shape"/>
+                    <ComboBox ItemsSource="{Binding Source={StaticResource timePeriodsFromEnum}}"
+                              SelectedItem="{Binding SGeometryType}"
+                              IsSynchronizedWithCurrentItem="True">
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Blocks Quantt"/>
+                    <ComboBox ItemsSource="{Binding BlockQuantites}"
+                              SelectedItem="{Binding SBlockQuantity}"
+                              IsSynchronizedWithCurrentItem="True"/>
+                </StackPanel>
+
+            </MenuItem>
+            <MenuItem Header="New Game" Command="{Binding NewGame}"/>
+        </Menu>
+
+        <Grid Name="UserGrid"  Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height ="65"/>
+                <RowDefinition Height ="65"/>
+                <RowDefinition Height ="65"/>
+                <RowDefinition Height ="65"/>
+                <RowDefinition Height ="65"/>
+                <RowDefinition Height ="65"/>
+                <RowDefinition Height ="65"/>
+                <RowDefinition Height ="65" />
+            </Grid.RowDefinitions>
+
+            <GridSplitter Grid.RowSpan="10" Grid.Column="1" IsEnabled="False" BorderBrush="Red" BorderThickness="5"/>
+            <GridSplitter Grid.RowSpan="10" Grid.Column="3" IsEnabled="False" BorderBrush="Red" BorderThickness="5"/>
+
+            <Polygon Grid.Column="0" Style="{StaticResource Picket}"/>
+            <Polygon Grid.Column="2"  Style="{StaticResource Picket}"/>
+            <Polygon Grid.Column="4" Style="{StaticResource Picket}"/>
+
+
+
+
+            <Path Data="{Binding Blocks[1].PathData}"  Grid.Row="{Binding Blocks[1].Row}" Grid.Column="{Binding Blocks[1].Column}" Fill="{Binding Blocks[1].Color}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Stroke="Black" StrokeThickness="3"/>
+            <Path Data="{Binding Blocks[2].PathData}" Grid.Row="{Binding Blocks[2].Row}" Grid.Column="{Binding Blocks[2].Column}" Fill="{Binding Blocks[2].Color}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Stroke="Black" StrokeThickness="3"/>
+            <Path Data="{Binding Blocks[3].PathData}" Grid.Row="{Binding Blocks[3].Row}" Grid.Column="{Binding Blocks[3].Column}" Fill="{Binding Blocks[3].Color}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Stroke="Black" StrokeThickness="3" />
+            <Path Data="{Binding Blocks[4].PathData}" Grid.Row="{Binding Blocks[4].Row}" Grid.Column="{Binding Blocks[4].Column}" Fill="{Binding Blocks[4].Color}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Stroke="Black" StrokeThickness="3"/>
+            <Path Data="{Binding Blocks[5].PathData}" Grid.Row="{Binding Blocks[5].Row}" Grid.Column="{Binding Blocks[5].Column}" Fill="{Binding Blocks[5].Color}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="Auto" Stroke="Black" StrokeThickness="3"/>
+            <Path Data="{Binding Blocks[6].PathData}" Grid.Row="{Binding Blocks[6].Row}" Grid.Column="{Binding Blocks[6].Column}" Fill="{Binding Blocks[6].Color}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Stroke="Black" StrokeThickness="3" />
+            <Path Data="{Binding Blocks[0].PathData}"  Grid.Row="{Binding Blocks[0].Row}" Grid.Column="{Binding Blocks[0].Column}" Fill="{Binding Blocks[0].Color}" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Stroke="Black" StrokeThickness="3" />
+
+            <Button Style="{StaticResource MyButtonStyle}" Focusable="True" Grid.RowSpan="8" Command="{Binding BlockMove }" CommandParameter="0" Height="471" VerticalAlignment="Top"/>
+            <Button Style="{StaticResource MyButtonStyle}" Grid.Column="2" Focusable="True" Grid.RowSpan="10" Command="{Binding BlockMove}" CommandParameter="2"/>
+            <Button Style="{StaticResource MyButtonStyle}" Grid.Column="4" Focusable="True" Grid.RowSpan="10" Command="{Binding BlockMove}" CommandParameter="4"/>
+
+            <Rectangle Height="Auto" Style="{StaticResource GrayStart}" Width="Auto" Grid.RowSpan="10" Grid.ColumnSpan="5">
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="Gray" Opacity="0.5"/>
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <Label Content="{Binding Path = ResultList.result[0]}" Grid.Column="4" Grid.Row="0"  Style="{StaticResource ResultLabel}"/>
+            <Label Content="{Binding ResultList.result[1]}" Grid.Column="4" Grid.Row="1" Style="{StaticResource ResultLabel}"/>
+            <Label Content="{Binding ResultList.result[2]}" Grid.Column="4" Grid.Row="2" Style="{StaticResource ResultLabel}"/>
+            <Label Content="{Binding ResultList.result[3]}" Grid.Column="4" Grid.Row="3" Style="{StaticResource ResultLabel}"/>
+            <Label Content="{Binding ResultList.result[4]}" Grid.Column="4" Grid.Row="4" Style="{StaticResource ResultLabel}"/>
+            <Label Content="{Binding ResultList.result[5]}" Grid.Column="4" Grid.Row="5" Style="{StaticResource ResultLabel}"/>
+            <Label Content="{Binding ResultList.result[6]}" Grid.Column="4" Grid.Row="6" Style="{StaticResource ResultLabel}"/>
+            <Label Content="{Binding ResultList.result[7]}" Grid.Column="4" Grid.Row="7" Style="{StaticResource ResultLabel}"/>
+
+            <DockPanel Grid.Column="4" Grid.Row="{Binding ChangableElement}" Visibility="Visible">
+                <Label DockPanel.Dock="Top" Content="Name:" Focusable="False" Style="{StaticResource ResultUserLabel}" />
+                <TextBox  Height="20" Width="150" Style="{StaticResource ResultText}" MaxLength="20" Text="{Binding UserName, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=Default}" />
+                <Button Height="20" Content="Save" Command="{Binding SaveTime}" Style="{StaticResource SaveButton}"/>
+            </DockPanel>
+
+
+
+            <Button Grid.Column="2" Grid.Row="5" Command="{Binding StartGame}" Style="{StaticResource StartButton}" Content="START"/>
+        </Grid>
+        <DockPanel>
+            <ToolBarTray DockPanel.Dock="Bottom">
+                <ToolBar>
+                    <Button Content="Tip" Command="{Binding Iteration}" CommandParameter="{Binding Blocks}"/>
+                </ToolBar>
+            </ToolBarTray>
+        </DockPanel>
+    </StackPanel>
+
+</Window>

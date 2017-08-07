@@ -1,0 +1,2 @@
+C:\Users\mateu\documents\visual studio 2017\Projects\Hanoi Towers\Hanoi Towers\bin\Debug\Hanoi Towers.exe
+C:\Users\mateu\Documents\Visual Studio 2017\Projects\Hanoi Towers\Hanoi Towers\bin\Debug\Xceed.Wpf.Toolkit.dll
